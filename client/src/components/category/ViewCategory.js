@@ -1,0 +1,121 @@
+import React, { Component } from 'react'
+import { Preloader, Placeholder } from 'react-preloading-screen';
+import '../style/datatable.css'
+import swal from 'sweetalert';
+import moment from 'moment'
+
+
+const $ = require('jquery');
+$.DataTable = require("datatables.net")
+
+class ViewCategory extends Component {
+
+  state = { category: [], isLoading: false, isEdit: false }
+
+  componentDidMount() {
+
+
+    fetch(`http://localhost:4000/category/`).then((response) => {
+      return response.json()
+    }).then((categoryData) => {
+      console.log("yes", categoryData.data)
+      this.setState({ category: categoryData.data.length ? categoryData.data : null });
+      $("#example").DataTable()
+    })
+
+
+  }
+
+  handleEdit = (e) => {
+    console.log(e.target.id)
+    this.setState({ isEdit: true })
+    this.props.history.push(`/edit-category/${e.target.id}`)
+  }
+
+  handleDelete = (e) => {
+    console.log(e.target.id)
+    let id = e.target.id;
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to retrieve",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch(`http://localhost:4000/category/${id}`, {
+            method: "DELETE",
+            headers: {
+              'Content-type': "application/json"
+            }
+          }).then((res) => {
+            res.json()
+          }).then((data) => {
+            console.log("data", data)
+            swal("File successfully deleted", {
+              icon: "success"
+            });
+          })
+
+        }
+      })
+  }
+
+  render() {
+    if (this.state.isEdit) {
+
+    }
+    console.log("render", this.state)
+    const mydata = this.state.category;
+    console.log("tunde", mydata)
+
+    let categoryList = mydata.length ? (
+      mydata.map((o, i) => {
+        console.log("my data", o);
+        return (
+          <tr key={o.id}>
+            <td>{i + 1}</td>
+            <td>{o.name}</td>
+            <td>{o.code}</td>
+            <td>{o.date_created}</td>
+            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" id={o.id} style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
+            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" id={o.id} style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
+          </tr>
+        )
+      })
+    ) : (
+        <div>No data to show</div>
+      )
+    return (
+      <Preloader>
+        <Placeholder>
+          <span fadeDuration={10000}>Loading...</span>
+        </Placeholder>
+        <div className="main-content-container container-fluid px-4" style={{ background: "white" }}>
+          <div className="card-body" style={{ background: "white" }}>
+            <table id="example" class="table table-striped table-bordered table-hover" width="100%" >
+              <thead>
+                <tr>
+                  <th>S/n</th>
+                  <th>Category Name</th>
+                  <th>Category Code</th>
+                  <th>Date Created</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {categoryList}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Preloader>
+    )
+  }
+}
+
+
+export default ViewCategory
