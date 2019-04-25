@@ -120,7 +120,9 @@ app.get('*', (req, res) => {
 })
 
 
+
 //express doesn't really consider  not found 404 as an error so we need to handle 404 explicitly
+
 
 //handle 404 error
 app.use((req, res, next) => {
