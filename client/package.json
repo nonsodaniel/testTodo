@@ -37,6 +37,7 @@
     "sweetalert": "^2.1.2",
     "sweetalert2": "^8.5.0"
   },
+  "proxy": "http://localhost:4000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -10,7 +10,6 @@ const path = require('path');
 
 const admin = require('./admin/routes/is_admin')
 const user = require('./users/routes/user')
-
 // =========================
 // PRIVATE ROUTES WITH AUTH
 // ========================
@@ -33,7 +32,8 @@ nodemailer = require('nodemailer');
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'uploads')))
+app.use(express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.set('secretKey', 'nodeRestApi');// JWT secret key
 
@@ -116,9 +116,12 @@ function validateUser(req, res, next) {
 //client app will take care of other routes i.e loaclhost:4000/somepage
 //somepage will be taken care of by the server
 app.get('*', (req, res) => {
+    console.log("hello", path.join(__dirname + "/client/build/index.html"))
     res.sendFile(path.join(__dirname + "/client/build/index.html"));
 })
-
+app.get('/', (req, res) => {
+    console.log("helo", req, res)
+})
 
 
 //express doesn't really consider  not found 404 as an error so we need to handle 404 explicitly
