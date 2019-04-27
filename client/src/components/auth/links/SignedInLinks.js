@@ -10,12 +10,12 @@ import CategoryDropdown from '../../category/dropdown/Category'
 import RoleDropdown from '../../role/dropdown/RoleDropdown'
 import { withRouter } from 'react-router-dom';
 
+
 class SignedInLinks extends Component {
 
   state = {
     isNews: false, isCategory: false, isRole: false, redirect: false
   }
-
 
   clickNews = (e) => {
     e.preventDefault()

@@ -12,6 +12,7 @@ import Editor from "nib-core";
 class AddNews extends Component {
     state = { title: "", category: "", content: "", author: "", image: "", data: "", isLoading: false }
 
+
     componentDidMount() {
         let isDev = /localhost/.test(window.location.origin);
         console.log("isdev", isDev)

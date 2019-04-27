@@ -4,7 +4,6 @@ import '../style/datatable.css'
 import swal from 'sweetalert';
 import moment from 'moment'
 
-
 const $ = require('jquery');
 $.DataTable = require("datatables.net")
 
