@@ -17,7 +17,7 @@ class RoleDropdown extends Component {
                 </li>
 
                 <li className="nav-item" style={{ background: "#f5f5f5" }}>
-                    <NavLink to='/view-admin'>
+                    <NavLink to='/view-admins'>
                         <a className="nav-link " href="#">
                             <i className="material-icons">note_add</i>
                             <span>View Admins</span>

@@ -16,8 +16,12 @@ class AdminProfile extends Component {
     state = { isLoading: false }
 
     componentDidMount() {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
+
         let id = JSON.parse(localStorage.getItem("admin")).admin._id; console.log("my data", id)
-        fetch(`http://localhost:4000/admin/${id}`).then((res) => {
+        fetch(`${base_url}/admin/${id}`).then((res) => {
             return res.json();
         }).then((data) => {
             console.log("admins", data); this.setState({ admin: data })

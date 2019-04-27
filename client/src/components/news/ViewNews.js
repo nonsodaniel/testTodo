@@ -13,9 +13,11 @@ class ViewNews extends Component {
   state = { news: [], isLoading: false, isEdit: false }
 
   componentDidMount() {
+    let isDev = /localhost/.test(window.location.origin);
+    console.log("isdev", isDev)
+    let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
 
-
-    fetch(`http://localhost:4000/news/`).then((response) => {
+    fetch(`${base_url}/news/`).then((response) => {
       return response.json()
     }).then((newsData) => {
       console.log("yes", newsData.data)

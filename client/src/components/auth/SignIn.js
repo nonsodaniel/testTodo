@@ -13,9 +13,7 @@ class SignIn extends Component {
 
 
     componentDidMount() {
-        // let local = localStorage.getItem("admin");
-        // console.log(local)
-        // if(local) return <Redirect to = '/' />
+
     }
 
     state = { email: "", password: "", isLoading: false }

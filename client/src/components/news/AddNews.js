@@ -11,8 +11,13 @@ import Editor from "nib-core";
 
 class AddNews extends Component {
     state = { title: "", category: "", content: "", author: "", image: "", data: "", isLoading: false }
+
     componentDidMount() {
-        fetch('http://localhost:4000/category/').then((res) => {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
+
+        fetch(`${base_url}/category/`).then((res) => {
             return res.json();
         }).then((data) => {
             console.log(data)

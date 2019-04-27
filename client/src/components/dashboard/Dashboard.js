@@ -11,7 +11,8 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     let isDev = /localhost/.test(window.location.origin);
-    let base_url = isDev ? "http://acada.herokuapp.com" : "http://localhost:4000/api"
+    console.log("isdev", isDev)
+    let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
 
     fetch(`${base_url}/admin/`).then((res) => {
       return res.json();

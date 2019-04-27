@@ -13,9 +13,11 @@ class ViewAdmins extends Component {
     state = { admin: [], isLoading: false, isEdit: false }
 
     componentDidMount() {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
 
-
-        fetch(`http://localhost:4000/admin/`).then((response) => {
+        fetch(`${base_url}/admin/`).then((response) => {
             return response.json()
         }).then((adminData) => {
             console.log("yes", adminData.data)

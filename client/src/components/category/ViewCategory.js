@@ -14,8 +14,11 @@ class ViewCategory extends Component {
 
   componentDidMount() {
 
+    let isDev = /localhost/.test(window.location.origin);
+    console.log("isdev", isDev)
+    let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
 
-    fetch(`http://localhost:4000/category/`).then((response) => {
+    fetch(`${base_url}/category/`).then((response) => {
       return response.json()
     }).then((categoryData) => {
       console.log("yes", categoryData.data)

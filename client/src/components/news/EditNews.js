@@ -15,8 +15,13 @@ class EditNews extends Component {
     state = { news: [], isLoading: false, title: "", content: "", author: "", category: [], isUpdated: false }
 
     componentDidMount() {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
+
         let id = this.props.match.params.id
-        fetch(`http://localhost:4000/news/${id}`).then((response) => {
+
+        fetch(`${base_url}/news/${id}`).then((response) => {
             return response.json()
         }).then((newsData) => {
             console.log(this.props)

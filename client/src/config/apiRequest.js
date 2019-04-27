@@ -1,10 +1,12 @@
 let isDev = /localhost/.test(window.location.origin);
-let base_url = isDev ? "http://acada.herokuapp.com" : "http://localhost:4000"
+console.log("isdev", isDev)
+let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com"
+
 const post = (action, request_data) => {
     return new Promise((resolve, reject) => {
         let route = (action === null) ? '/' : action;
 
-        fetch(`${base_url}/api/${route}`, {
+        fetch(`${base_url}${route}`, {
             method: "POST",
             cache: "no-cache",
             headers: {
