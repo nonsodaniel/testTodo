@@ -15,15 +15,15 @@ class Footer extends Component {
           <li className="nav-item">
             <a className="nav-link" href="ii.html">About</a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link" href="ii.html">Products</a>
-          </li>
-          <li className="nav-item">
+          </li> */}
+          {/* <li className="nav-item">
             <a className="nav-link" href="ii.html">Blog</a>
-          </li>
+          </li> */}
         </ul>
         <span className="copyright ml-auto my-auto mr-2">Copyright © 2019
-              <a href="https://designrevision.com" rel="nofollow">__.nonsoDaniel</a>
+              <a href="https://designrevision.com" rel="nofollow">AcadaTrends Team</a>
         </span>
       </footer>
     );

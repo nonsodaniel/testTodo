@@ -14,6 +14,7 @@ class Dashboard extends Component {
     console.log("isdev", isDev)
     let base_url = isDev ? "http://localhost:4000/api" : "https://acadanews.herokuapp.com/api"
 
+
     fetch(`${base_url}/admin/`).then((res) => {
       return res.json();
     }).then((data) => {
@@ -45,8 +46,9 @@ class Dashboard extends Component {
 
   render() {
     console.log("Render state", this.state);
-    // let token = localStorage.getItem("Admin");
-    // if(!token) return <Redirect to = '/login' />
+    let isDev = /localhost/.test(window.location.origin);
+    console.log("isdev", isDev)
+    let url = isDev ? "http://localhost:4000/" : "https://acadanews.herokuapp.com/"
     let adminData = this.state.admin, newsData = this.state.news, userData = this.state.user, categoryData = this.state.category;
 
     let adminLength = adminData.data ? adminData.data.length : 0;
@@ -60,12 +62,12 @@ class Dashboard extends Component {
         console.log("my data", o);
         return (
           <tr key={o.id}>
-            {/* <td><img src={url + o.admin_dp} style={{ height: "25px", width: " 26px", borderRadius: "50px" }} /></td> */}
+            <td><img src={url + o.admin_dp} style={{ height: "25px", width: " 26px", borderRadius: "50px" }} /></td>
             <td>{o.othernames}</td>
             <td>{o.email}</td>
             <td>{o.phone}</td>
-            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
-            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
+            {/* <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td> */}
+            {/* <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td> */}
           </tr>
         )
       })
@@ -82,8 +84,8 @@ class Dashboard extends Component {
             <td>{o.firstname + " " + o.othernames}</td>
             <td>{o.email}</td>
             <td>{o.phone}</td>
-            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
-            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
+            {/* <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td> */}
+            {/* <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td> */}
           </tr>
         )
       })
@@ -101,8 +103,8 @@ class Dashboard extends Component {
             <td>{o.content}</td>
             <td>{o.author}</td>
             <td>{o.date_created ? new Date(o.date_created).toLocaleDateString() : null}</td>
-            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
-            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
+            {/* <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td> */}
+            {/* <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td> */}
           </tr>
         )
       })
@@ -118,8 +120,8 @@ class Dashboard extends Component {
             <td>{o.code}</td>
             <td>{o.name}</td>
             <td>{o.date ? new Date(o.date).toLocaleDateString() : null}</td>
-            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
-            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
+            {/* <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td> */}
+            {/* <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td> */}
           </tr>
         )
       })
@@ -252,8 +254,8 @@ class Dashboard extends Component {
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    {/* <th>Edit</th>
+                    <th>Delete</th> */}
                   </thead>
                   <tbody>
 
@@ -268,8 +270,8 @@ class Dashboard extends Component {
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      {/* <th>Edit</th>
+                      <th>Delete</th> */}
                     </tr>
                   </tfoot>
                 </table>
@@ -298,8 +300,8 @@ class Dashboard extends Component {
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      {/* <th>Edit</th>
+                      <th>Delete</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -311,8 +313,8 @@ class Dashboard extends Component {
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      {/* <th>Edit</th>
+                      <th>Delete</th> */}
                     </tr>
                   </tfoot>
                 </table>
@@ -349,8 +351,8 @@ class Dashboard extends Component {
                       <th>Category Code</th>
                       <th>Category Name</th>
                       <th>Date Created</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      {/* <th>Edit</th>
+                      <th>Delete</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -362,8 +364,8 @@ class Dashboard extends Component {
                       <th>Category Name</th>
                       <th>Category Code</th>
                       <th>Date Created</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      {/* <th>Edit</th>
+                      <th>Delete</th> */}
                     </tr>
                   </tfoot>
                 </table>
@@ -416,8 +418,8 @@ class Dashboard extends Component {
                     <th class="th-sm">Content</th>
                     <th class="th-sm">Author</th>
                     <th class="th-sm">Date</th>
-                    <th class="th-sm">Edit</th>
-                    <th class="th-sm">Delete</th>
+                    {/* <th class="th-sm">Edit</th>
+                    <th class="th-sm">Delete</th> */}
                   </tr>
                 </thead>
                 <tbody>
