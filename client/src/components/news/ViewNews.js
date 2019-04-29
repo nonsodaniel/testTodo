@@ -14,7 +14,7 @@ class ViewNews extends Component {
   componentDidMount() {
     let isDev = /localhost/.test(window.location.origin);
     console.log("isdev", isDev)
-    let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
+    let base_url = isDev ? "http://localhost:4000/api" : "https://acadanews.herokuapp.com/api"
 
     fetch(`${base_url}/news/`).then((response) => {
       return response.json()
