@@ -10,6 +10,7 @@ const path = require('path');
 
 const admin = require('./admin/routes/is_admin')
 const user = require('./users/routes/user')
+
 // =========================
 // PRIVATE ROUTES WITH AUTH
 // ========================
@@ -20,15 +21,19 @@ const user = require('./users/routes/user')
 const news = require('./admin/routes/news')
 const category = require('./admin/routes/category')
 
-//    ======  EMAIL =====   
 
+// ===== USER =====
+const comments = require("./users/routes/comments")
+const likes = require("./users/routes/likes")
+
+
+//    ======  EMAIL =====   
 var hbs = require('nodemailer-express-handlebars'),
     email = process.env.MAILER_EMAIL_ID || 'nonsodaniel07@gmail.com',
     pass = process.env.MAILER_PASSWORD || 'pa##word'
 nodemailer = require('nodemailer');
 
-// ===== USER =====
-// const buy = require('./users/routes/news')
+
 
 app.use(cors());
 
@@ -51,6 +56,7 @@ app.use('/api/user', user)
 app.use('/api/news', news)
 app.use('/api/dp', admin)
 app.use('/api/category', category)
+app.use('/api/comments', comments)
 
 
 app.get('/api/uploads/:imgName', (req, res) => {
@@ -71,7 +77,7 @@ app.get('/api/uploads/news/:imgName', (req, res) => {
 //private routes
 app.use('/api/admin/news', validateUser, news)
 app.use('/api/admin/category', validateUser, category)
-// app.use('/user/buy', validateUser, buy)
+app.use('api/users/buy', validateUser, comments)
 
 // app.use('/tickets', validateUser, tickets);  
 // app.use('/category', validateUser, category)

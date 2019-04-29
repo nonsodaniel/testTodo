@@ -8,7 +8,7 @@ const CommentSchema = new Schema({
         trim: true,
         required: true
     },
-    author: {
+    posted_by: {
         type: String,
         trim: true,
     },
@@ -18,4 +18,4 @@ const CommentSchema = new Schema({
 
 }, { timestamps: true })
 
-module.exports = mongoose.model('Comment', CommentSchema);
+module.exports = mongoose.model('Comments', CommentSchema);
