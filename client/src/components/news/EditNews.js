@@ -29,7 +29,7 @@ class EditNews extends Component {
             console.log("yes", newsData.data)
             this.setState({ title: data.title, content: data.content, category: data.category, author: data.author })
 
-            fetch(`http://localhost:4000/category/`).then((res) => {
+            fetch(`${base_url}/category/`).then((res) => {
                 return res.json();
             }).then((data) => {
                 console.log(id)

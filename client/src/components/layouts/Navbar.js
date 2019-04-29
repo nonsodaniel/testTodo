@@ -10,8 +10,14 @@ class Navbar extends Component {
 
   render() {
 
+    let isDev = /localhost/.test(window.location.origin);
+    console.log("isdev", isDev)
+    let base_url = isDev ? "http://localhost:4000/" : "https://acadanews.herokuapp.com/"
+
+    let admin_name = JSON.parse(localStorage.getItem("admin")) ? JSON.parse(localStorage.getItem("admin")).admin : null
     let local = JSON.parse(localStorage.getItem("admin")) ? JSON.parse(localStorage.getItem("admin")).admin.admin_dp : null
-    let dp = local ? `http://localhost:4000/${local}` : Dp;
+    let dp = local ? `${base_url}${local}` : Dp;
+    console.log("love", admin_name)
     return (
       <div className="main-navbar sticky-top bg-white">
         {/* <!-- Main Navbar --> */}
@@ -43,7 +49,7 @@ class Navbar extends Component {
                   </div>
                   <Link to="/admin-profile">
                     <div className="notification__content">
-                      <span className="notification__category">Profile</span>
+                      <span className="notification__category" style={{ fontSize: "14px", fontWeight: "600" }}>{admin_name.firstname + " " + admin_name.othernames}</span>
                     </div>
                   </Link>
                 </a>
