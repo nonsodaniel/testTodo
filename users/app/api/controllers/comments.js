@@ -1,7 +1,10 @@
 const commentModel = require('../models/comments')
 module.exports = {
     create: (req, res, next) => {
-        commentModel.create({ comment: req.body.comment, posted_by: req.body.posted_by }, (err, comment) => {
+        commentModel.create({
+            comment: req.body.comment,
+            posted_by: req.body.posted_by, newsId: req.body.newsId
+        }, (err, comment) => {
             console.log("Comment body", comment)
             if (err) throw err
             else res.json({ status: "Success", message: "Comment Successfully created", data: comment })

@@ -81,7 +81,6 @@ class ViewAdmins extends Component {
                 return (
                     <tr key={o.id}>
                         <td>{i + 1}</td>
-                        <td>{o.school}</td>
                         <td>{o.firstname}</td>
                         <td>{o.othernames}</td>
                         <td>{o.email}</td>
@@ -109,7 +108,6 @@ class ViewAdmins extends Component {
                                     <th>OtherNames</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>School</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>

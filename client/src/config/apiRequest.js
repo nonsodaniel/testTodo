@@ -1,6 +1,6 @@
 let isDev = /localhost/.test(window.location.origin);
 console.log("isdev", isDev)
-let base_url = isDev ? "http://localhost:4000/api" : "https://acadanews.herokuapp.com/api"
+let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
 
 const post = (action, request_data) => {
     return new Promise((resolve, reject) => {

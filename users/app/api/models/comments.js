@@ -12,8 +12,8 @@ const CommentSchema = new Schema({
         type: String,
         trim: true,
     },
-    postId: {
-        type: Number
+    newsId: {
+        type: String
     }
 
 }, { timestamps: true })

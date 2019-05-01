@@ -14,7 +14,7 @@ class ViewNews extends Component {
   componentDidMount() {
     let isDev = /localhost/.test(window.location.origin);
     console.log("isdev", isDev)
-    let base_url = isDev ? "http://localhost:4000/api" : "https://acadanews.herokuapp.com/api"
+    let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
 
     fetch(`${base_url}/news/`).then((response) => {
       return response.json()
@@ -37,6 +37,10 @@ class ViewNews extends Component {
   }
 
   handleDelete = (e) => {
+    let isDev = /localhost/.test(window.location.origin);
+    console.log("isdev", isDev)
+    let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
+
     console.log(e.target.id)
     let id = e.target.id;
     swal({
@@ -48,7 +52,7 @@ class ViewNews extends Component {
     })
       .then((willDelete) => {
         if (willDelete) {
-          fetch(`http://localhost:4000/news/${id}`, {
+          fetch(`${base_url}/news/${id}`, {
             method: "DELETE",
             headers: {
               'Content-type': "application/json"

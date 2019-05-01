@@ -9,15 +9,18 @@ class Navbar extends Component {
   }
 
   render() {
+    let localData = JSON.parse(localStorage.getItem("admin")).admin
 
     let isDev = /localhost/.test(window.location.origin);
     console.log("isdev", isDev)
-    let base_url = isDev ? "http://localhost:4000/" : "https://acadanews.herokuapp.com/"
+    let base_url = isDev ? "http://localhost:4000/" : "www.acadatrends.com/"
 
-    let admin_name = JSON.parse(localStorage.getItem("admin")) ? JSON.parse(localStorage.getItem("admin")).admin : null
+    console.log("localdata", localData)
+    let admin_name = localData === null ? "Administrator" : `${localData.firstname}  ${localData.othernames}`;
     let local = JSON.parse(localStorage.getItem("admin")) ? JSON.parse(localStorage.getItem("admin")).admin.admin_dp : null
     let dp = local ? `${base_url}${local}` : Dp;
-    console.log("love", admin_name)
+    let admin_weelcome = ` ${admin_name}`
+
     return (
       <div className="main-navbar sticky-top bg-white">
         {/* <!-- Main Navbar --> */}
@@ -29,7 +32,7 @@ class Navbar extends Component {
                   <i className="fas fa-search"></i>
                 </div>
               </div>
-              <input className="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search" /> </div>
+              <input className="navbar-search form-control" type="text" placeholder={admin_weelcome} aria-label="Search" disabled="true" /> </div>
           </form>
           <ul className="navbar-nav border-left flex-row ">
 
@@ -49,7 +52,7 @@ class Navbar extends Component {
                   </div>
                   <Link to="/admin-profile">
                     <div className="notification__content">
-                      <span className="notification__category" style={{ fontSize: "14px", fontWeight: "600" }}>{admin_name.firstname + " " + admin_name.othernames}</span>
+                      <span className="notification__category" style={{ fontSize: "14px", fontWeight: "600" }}>{admin_name}</span>
                     </div>
                   </Link>
                 </a>

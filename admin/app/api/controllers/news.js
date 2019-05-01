@@ -1,4 +1,7 @@
 const newsModel = require('../models/news');
+const commentModel = require("../../../../users/app/api/models/comments")
+const likesModel = require("../../../../users/app/api/models/likes")
+const viewsModel = require("../../../../users/app/api/models/views")
 const fs = require('fs');
 
 
@@ -24,9 +27,7 @@ module.exports = {
         const obj = req.body;
         newsModel.create({
             title: obj.title, category: obj.category,
-            content: obj.content, author: obj.author,
-            likes: obj.likes, views: obj.views,
-            date: obj.date
+            content: obj.content, author: obj.author
         }, async (err, result) => {
             if (err) throw err;
 
@@ -52,23 +53,23 @@ module.exports = {
             else res.json({ status: "Success", message: "News found", data: result })
         })
     },
-    getAll: (req, res, next) => {
-        const newsList = [];
-        newsModel.find({}, (err, result) => {
-            console.log(result)
-            if (err) throw err
-            else
-                for (let news of result) {
-                    console.log(news)
-                    newsList.push({
-                        id: news.id, title: news.title, category: news.category,
-                        content: news.content, author: news.author, news_dp: news.news_dp,
-                        likes: news.likes, views: news.views, comments: news.comments,
-                        date_created: news.date_created
-                    })
-                }
-            res.json({ status: "Success", message: "News list found!!!", data: newsList })
-        })
+    getAll: async (req, res, next) => {
+        let all_news = await newsModel.find({});
+
+        for (let news of all_news) {
+            let comment = await commentModel.find({ newsId: news._id });
+            news.comments = comment;
+
+            let like = await likesModel.find({ newsId: news._id });
+            news.likes = like;
+            console.log("my like")
+
+            let view = await viewsModel.find({ newsId: news._id });
+            news.views = view;
+            console.log("my like")
+        }
+        res.json({ status: "Success", statuscode: 200, message: "News list found!!!", data: all_news })
+
     },
     updateById: (req, res, next) => {
         const obj = req.body
@@ -105,3 +106,5 @@ module.exports = {
 
     }
 }
+
+

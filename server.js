@@ -25,13 +25,11 @@ const category = require('./admin/routes/category')
 // ===== USER =====
 const comments = require("./users/routes/comments")
 const likes = require("./users/routes/likes")
+const views = require("./users/routes/views")
 
 
 //    ======  EMAIL =====   
-var hbs = require('nodemailer-express-handlebars'),
-    email = process.env.MAILER_EMAIL_ID || 'nonsodaniel07@gmail.com',
-    pass = process.env.MAILER_PASSWORD || 'pa##word'
-nodemailer = require('nodemailer');
+
 
 
 
@@ -57,6 +55,8 @@ app.use('/api/news', news)
 app.use('/api/dp', admin)
 app.use('/api/category', category)
 app.use('/api/comments', comments)
+app.use('/api/likes', likes)
+app.use('/api/views', views)
 
 
 app.get('/api/uploads/:imgName', (req, res) => {
@@ -77,7 +77,8 @@ app.get('/api/uploads/news/:imgName', (req, res) => {
 //private routes
 app.use('/api/admin/news', validateUser, news)
 app.use('/api/admin/category', validateUser, category)
-app.use('api/users/buy', validateUser, comments)
+app.use('api/users/comments', validateUser, comments)
+// app.use('/api/user/likes', validateUser, likes)
 
 // app.use('/tickets', validateUser, tickets);  
 // app.use('/category', validateUser, category)
@@ -86,21 +87,6 @@ app.get('/favicon.ico', (req, res) => {
     res.sendStatus(204);
 })
 
-var smtpTransport = nodemailer.createTransport({
-    service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
-    auth: {
-        user: email,
-        pass: pass
-    }
-});
-
-var handlebarsOptions = {
-    viewEngine: 'handlebars',
-    viewPath: path.resolve('admin/app/api/templates'),
-    extName: '.html'
-};
-
-smtpTransport.use('compile', hbs(handlebarsOptions));
 
 function validateUser(req, res, next) {
     jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), (err, decoded) => {

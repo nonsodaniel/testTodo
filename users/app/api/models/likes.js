@@ -1,21 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LikesSchema = new Schema({
+const LikeSchema = new Schema({
+    userId: {
+        type: String,
+        trim: true,
+        required: true,
+    },
 
-    likes: {
+    newsId: {
         type: String,
         trim: true,
-        required: true
-    },
-    liked_by: {
-        type: String,
-        trim: true,
-    },
-    postId: {
-        type: Number
     }
-
 }, { timestamps: true })
 
-module.exports = mongoose.model('Likes', LikesSchema);
+module.exports = mongoose.model('Likes', LikeSchema);

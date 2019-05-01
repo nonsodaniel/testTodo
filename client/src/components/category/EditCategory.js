@@ -15,8 +15,12 @@ class EditCategory extends Component {
     state = { category: [], isLoading: false, name: "", code: "", isUpdated: false }
 
     componentDidMount() {
-        let id = this.props.match.params.id
-        fetch(`http://localhost:4000/category/${id}`).then((response) => {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
+
+        let id = this.props.match.params.id;
+        fetch(`${base_url}/category/${id}`).then((response) => {
             return response.json()
         }).then((categoryData) => {
             console.log(this.props)
@@ -34,6 +38,10 @@ class EditCategory extends Component {
     }
 
     handleSubmit = (e) => {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
+
         e.preventDefault()
         let id = this.props.match.params.id;
         let name = document.getElementById("name").value, code = document.getElementById("code").value;
@@ -41,7 +49,7 @@ class EditCategory extends Component {
         let obj = { name, code };
         console.log("obj", obj);
 
-        fetch(`http://localhost:4000/category/${id}`, {
+        fetch(`${base_url}/category/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

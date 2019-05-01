@@ -17,7 +17,7 @@ class EditNews extends Component {
     componentDidMount() {
         let isDev = /localhost/.test(window.location.origin);
         console.log("isdev", isDev)
-        let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
+        let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
 
         let id = this.props.match.params.id
 
@@ -47,6 +47,10 @@ class EditNews extends Component {
     }
 
     handleSubmit = (e) => {
+        let isDev = /localhost/.test(window.location.origin);
+        console.log("isdev", isDev)
+        let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
+
         e.preventDefault()
         let id = this.props.match.params.id;
         let title = document.getElementById("title").value, category = document.getElementById("category").value,
@@ -54,7 +58,7 @@ class EditNews extends Component {
 
         let obj = { title, category, content, author };
         console.log("obj", obj)
-        fetch(`http://localhost:4000/news/${id}`, {
+        fetch(`${base_url}/news/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

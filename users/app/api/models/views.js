@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const NewsSchema = new Schema({
+const ViewSchema = new Schema({
     userId: {
-        type: [],
+        type: String,
         trim: true,
         required: true,
     },
@@ -11,12 +11,7 @@ const NewsSchema = new Schema({
     newsId: {
         type: String,
         trim: true,
-    },
-
-    date_created: {
-        type: Date,
-        default: Date.now
     }
-})
+}, { timestamps: true })
 
-module.exports = mongoose.model('News', NewsSchema);
+module.exports = mongoose.model('Views', ViewSchema);

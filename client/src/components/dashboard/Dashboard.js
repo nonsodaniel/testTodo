@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-
+import image from '../style/images/avatar.jpg'
 
 
 
@@ -12,7 +12,8 @@ class Dashboard extends Component {
   componentDidMount() {
     let isDev = /localhost/.test(window.location.origin);
     console.log("isdev", isDev)
-    let base_url = isDev ? "http://localhost:4000/api" : "https://acadanews.herokuapp.com/api"
+    let base_url = isDev ? "http://localhost:4000/api" : "www.acadatrends.com/api"
+
 
 
     fetch(`${base_url}/admin/`).then((res) => {
@@ -432,8 +433,8 @@ class Dashboard extends Component {
                     <th class="th-sm">Content</th>
                     <th class="th-sm">Author</th>
                     <th class="th-sm">Date</th>
-                    <th class="th-sm">Edit</th>
-                    <th class="th-sm">Delete</th>
+                    {/* <th class="th-sm">Edit</th>
+                    <th class="th-sm">Delete</th> */}
                   </tr>
                 </tfoot>
               </table>

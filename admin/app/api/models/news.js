@@ -23,28 +23,17 @@ const NewsSchema = new Schema({
         required: true
     },
     likes: {
-        type: Number,
-        default: 0
+        type: Array,
+        default: [],
     },
     views: {
-        type: Number,
-        default: 0
+        type: Array,
+        default: [],
     },
-    // comments: [{
-    //     comment: {
-    //         type: String,
-    //         minlength: 8,
-    //         maxlength: 128
-    //     },
-    //     author: {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: 'User'
-    //     },
-    //     date: {
-    //         type: Number,
-    //         default: Date.now
-    //     },
-    // }],
+    comments: {
+        type: Array,
+        default: []
+    },
 
     // comments: [
     //     {
