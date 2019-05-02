@@ -31,8 +31,10 @@ class ViewNews extends Component {
   }
 
   handleEdit = (e) => {
+    console.log(e)
     console.log(e.target.id)
     this.setState({ isEdit: true })
+    console.log("Got here", e.target)
     this.props.history.push(`/edit-news/${e.target.id}`)
   }
 
@@ -83,13 +85,13 @@ class ViewNews extends Component {
       mydata.map((o, i) => {
         console.log("my data", o);
         return (
-          <tr key={o.id}>
+          <tr key={o._id}>
             <td>{i + 1}</td>
             <td>{o.author}</td>
             <td>{o.title}</td>
-            <td>{o.content}</td>
-            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o.id}><i className="material-icons" id={o.id} style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
-            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o.id}><i className="material-icons" id={o.id} style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
+            <td>{o._id}</td>
+            <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o._id}><i className="material-icons" id={o._id} style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
+            <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o._id}><i className="material-icons" id={o.id} style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
           </tr>
         )
       })
