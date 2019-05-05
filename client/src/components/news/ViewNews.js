@@ -89,7 +89,7 @@ class ViewNews extends Component {
             <td>{i + 1}</td>
             <td>{o.author}</td>
             <td>{o.title}</td>
-            <td>{o._id}</td>
+            <td>{o.content}</td>
             <td><button class="btn btn-primary btn-xs" style={{ borderRadius: "50px", width: "10px" }} onClick={this.handleEdit} id={o._id}><i className="material-icons" id={o._id} style={{ left: "-6px", fontSize: "13px" }}>mode_edit</i></button></td>
             <td><button class="btn btn-danger btn-xs" style={{ borderRadius: "50px", width: "10px", width: "10px" }} onClick={this.handleDelete} id={o._id}><i className="material-icons" id={o.id} style={{ left: "-6px", fontSize: "13px" }}>delete_sweep</i></button></td>
           </tr>

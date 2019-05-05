@@ -12,16 +12,16 @@ class ViewUsers extends Component {
 
     state = { user: [], isLoading: false, isEdit: false }
 
-    componentDidMount() {
+   async  componentDidMount() {
         let isDev = /localhost/.test(window.location.origin);
         console.log("isdev", isDev)
         let base_url = isDev ? "http://localhost:4000/api" : "http://acada.herokuapp.com/api"
 
-        fetch(`${base_url}/user/`).then((response) => {
+       await fetch(`${base_url}/user/`).then((response) => {
             return response.json()
         }).then((userData) => {
             console.log("yes", userData.data)
-            this.setState({ user: userData.data.length ? userData.data : null });
+            this.setState({ user: userData.data.length ? userData.data : [] });
             $("#example").DataTable()
         })
 

@@ -32,7 +32,7 @@ class ViewAdmins extends Component {
     }
 
     handleEdit = (e) => {
-        console.log(e.target.id)
+       console.log("target",e.target.id) 
         this.setState({ isEdit: true })
         this.props.history.push(`/edit-admin/${e.target.id}`)
     }
