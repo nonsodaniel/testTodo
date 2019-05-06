@@ -32,7 +32,7 @@ module.exports = {
             if (err) throw err;
 
             let { image } = req.body;
-            let name = `${Math.random() * 10000000000000000}.png`
+            let name = `News ${Math.random() * 10000000000000000}.png`
 
             if (image) {
                 try {

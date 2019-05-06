@@ -137,15 +137,15 @@ class EditNews extends Component {
                                 </div>
                             </div><br /><br />
 
-                            <img src="" height="200" id="image-box" alt="Hello" />
 
-                            <div className="row">
-                                <img src="" height="200" id="image-box" alt="jfjfj" />
-                                <div className="col-md-2">Upload Image : </div>
+                            <div className="row"> 
+                              <div className="col-md-2">Upload Image : </div>
                                 <div className="col-md-8">
-                                    <input type="file" className="form-control" id="images" placeholder="City" onChange={this.previewFile} />
-                                </div>
+                                  <input type="file" className="form-control" id="images" placeholder="City" onChange={this.previewFile} />
+                                <img src="" height="200" id="image-box" alt="" />
+                             </div>
                             </div><br /><br />
+                        
 
                             <div className="row">
                                 <div className="col-md-2"> </div>
